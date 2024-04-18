@@ -1,22 +1,27 @@
-<?php
-function isUserLoggedIn() {
-    return isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true;
-}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Functions</title>
+</head>
+<body>
+	<?php
+	//Function Without Arguments
+	function AddNum(){ 
+		$a = 20;
+		$b = 30;
+		$sum = $a + $b;
+		echo $sum;
+	}
+		AddNum();
+		//Function with parameters
+		function Sum ($a, $b){
+			$Sum = $a+$b;
+			echo $Sum;
+		}
+		Sum(100,450);
+		
+	?>
 
-function redirectIfNotLoggedIn() {
-    if (!isUserLoggedIn()) {
-        header("Location: login.php");
-        exit;
-    }
-}
-function addActivity($activity, $start_time, $end_time) {
-    global $conn;
 
-    $user_id = $_SESSION["id"];
-    $sql = "INSERT INTO activities (user_id, activity, start_time, end_time) VALUES (?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("isss", $user_id, $activity, $start_time, $end_time);
-    $stmt->execute();
-    $stmt->close();
-}
-?>
+</body>
+</html>
